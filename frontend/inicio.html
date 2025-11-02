@@ -9,13 +9,13 @@
     <style>
         /* ===== VARIÁVEIS E CONFIGURAÇÕES GLOBAIS ===== */
         :root {
-            --cor-fundo-app: #f0f2f5;
-            --cor-fundo-topo: #0b1a2b;
-            --cor-texto-claro: #E0E0E0;
-            --cor-destaque-ciano: #00bcd4;
-            --cor-destaque-amarelo: #fbbc05;
+            --cor-fundo-app: #F4F9FA;
+            --cor-fundo-topo: #01182A;
+            --cor-texto-claro: #F4F9FA;
+            --cor-destaque-ciano: #2ED5D8;
+            --cor-destaque-amarelo: #F2B705;
             --cor-nav-bar: var(--cor-fundo-topo);
-            --cor-icone-fundo-final: #152535;
+            --cor-icone-fundo-final: #0B2C3A;
             --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.1);
             --transicao-padrao: all 0.3s ease;
         }
@@ -64,7 +64,6 @@
         .location img {
             width: 20px;
             height: 20px;
-            filter: invert(100%);
             margin-right: 8px;
         }
 
@@ -85,24 +84,17 @@
             background-color: var(--cor-icone-fundo-final);
             width: 40px;
             height: 40px;
-            border-radius: 5px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
             cursor: pointer;
-            transition: var(--transicao-padrao);
-        }
-
-        .control-icon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .control-icon img {
             width: 24px;
             height: 24px;
-            filter: invert(100%);
         }
 
         .search-bar {
@@ -115,7 +107,7 @@
             padding: 12px 12px 12px 45px;
             border: none;
             border-radius: 25px;
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: #0B2C3A;
             color: var(--cor-texto-claro);
             font-size: 1em;
             transition: var(--transicao-padrao);
@@ -124,7 +116,7 @@
 
         .search-bar input:focus {
             outline: none;
-            background-color: rgba(255, 255, 255, 0.25);
+            background-color: #0B2C3A;
             box-shadow: 0 0 0 2px var(--cor-destaque-ciano);
         }
 
@@ -139,7 +131,6 @@
             transform: translateY(-50%);
             width: 20px;
             height: 20px;
-            filter: invert(100%);
         }
 
         /* ===== SEÇÃO DE CATEGORIAS ===== */
@@ -164,11 +155,6 @@
             min-width: 70px;
             text-align: center;
             cursor: pointer;
-            transition: var(--transicao-padrao);
-        }
-
-        .category-item:hover {
-            transform: translateY(-3px);
         }
 
         .category-circle {
@@ -181,13 +167,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: var(--sombra-suave);
-            transition: var(--transicao-padrao);
-        }
-
-        .category-item:hover .category-circle {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .category-circle img {
@@ -200,7 +179,7 @@
         .category-text {
             color: var(--cor-texto-claro);
             font-size: 0.8em;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         /* ===== CONTENT BODY ===== */
@@ -469,20 +448,20 @@
 
             <div class="search-controls">
                 <div class="control-icon" title="Menu" id="menu-btn">
-                    <img src="img/home_barra_de_tarefa.png" alt="Menu">
+                    <img src="img/menu_hamburguer.png" alt="Menu">
                 </div>
 
                 <div class="search-bar" id="search-bar">
-                    <img src="img/lupa_barra_de_tarefa.png" alt="Buscar">
+                    <img src="img/search_white.png" alt="Buscar">
                     <input type="text" placeholder="O que você deseja comprar?" readonly>
                 </div>
 
                 <div class="control-icon" title="Listas" id="lists-btn">
-                    <img src="img/lista_barra_tarefa.png" alt="Listas">
+                    <img src="img/lista_white.png" alt="Listas">
                 </div>
 
                 <div class="control-icon" title="Perfil" id="profile-btn">
-                    <img src="img/user.png" alt="Perfil">
+                    <img src="img/user_white.png" alt="Perfil">
                 </div>
             </div>
 
