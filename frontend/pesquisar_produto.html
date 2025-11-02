@@ -9,14 +9,13 @@
     <style>
         /* ===== VARIÁVEIS E CONFIGURAÇÕES GLOBAIS ===== */
         :root {
-            --cor-fundo-app: #f0f2f5;
-            --cor-fundo-topo: #0b1a2b;
-            --cor-texto-claro: #E0E0E0;
-            --cor-destaque-ciano: #00bcd4;
-            --cor-destaque-amarelo: #fbbc05;
+            --cor-fundo-app: #F4F9FA;
+            --cor-fundo-topo: #01182A;
+            --cor-texto-claro: #F4F9FA;
+            --cor-destaque-ciano: #2ED5D8;
+            --cor-destaque-amarelo: #F2B705;
             --cor-nav-bar: var(--cor-fundo-topo);
-            --cor-icone-fundo-final: #152535;
-            --cor-categoria-ativa: #f0f2f5;
+            --cor-icone-fundo-final: #0B2C3A;
             --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.1);
             --transicao-padrao: all 0.3s ease;
         }
@@ -55,30 +54,24 @@
             display: flex;
             gap: 10px;
             align-items: center;
+            margin-bottom: 15px;
         }
 
         .control-icon {
             background-color: var(--cor-icone-fundo-final);
             width: 40px;
             height: 40px;
-            border-radius: 5px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
             cursor: pointer;
-            transition: var(--transicao-padrao);
-        }
-
-        .control-icon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .control-icon img {
             width: 24px;
             height: 24px;
-            filter: invert(100%);
         }
 
         .search-bar {
@@ -91,15 +84,16 @@
             padding: 12px 12px 12px 45px;
             border: none;
             border-radius: 25px;
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: #0B2C3A;
             color: var(--cor-texto-claro);
             font-size: 1em;
             transition: var(--transicao-padrao);
+            cursor: pointer;
         }
 
         .search-bar input:focus {
             outline: none;
-            background-color: rgba(255, 255, 255, 0.25);
+            background-color: #0B2C3A;
             box-shadow: 0 0 0 2px var(--cor-destaque-ciano);
         }
 
@@ -114,7 +108,6 @@
             transform: translateY(-50%);
             width: 20px;
             height: 20px;
-            filter: invert(100%);
         }
 
         /* ===== MAIN CONTENT AREA ===== */
@@ -126,7 +119,7 @@
 
         /* ===== PAINEL DE CATEGORIAS (SIDEBAR) ===== */
         .category-sidebar {
-            width: 160px;
+            width: 25%;
             background-color: var(--cor-fundo-topo);
             color: var(--cor-texto-claro);
             padding: 15px 0;
@@ -140,7 +133,7 @@
         }
 
         .category-title {
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
             padding: 0 15px 15px;
             text-align: left;
@@ -158,12 +151,12 @@
         }
 
         .category-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--cor-icone-fundo-final);
         }
 
         .category-item.active {
             background-color: var(--cor-categoria-ativa);
-            color: #333;
+            color: var(--cor-destaque-ciano);
             border-top-left-radius: 20px;
             border-bottom-left-radius: 20px;
             font-weight: bold;
@@ -198,7 +191,7 @@
             background-color: var(--cor-fundo-app);
             padding: 20px;
             overflow-y: auto;
-            border-top-left-radius: 30px;
+            border-top-left-radius: 20px;
             margin-left: -10px;
             z-index: 1;
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
@@ -214,17 +207,6 @@
 
         .results-area h3:first-child {
             margin-top: 0;
-        }
-
-        .results-area h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--cor-destaque-ciano);
-            border-radius: 2px;
         }
 
         .search-results-title {
@@ -247,14 +229,14 @@
         .results-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 18px;
+            gap: 20px;
             margin-bottom: 25px;
         }
 
         .product-card {
             text-align: center;
             padding: 10px;
-            border-radius: 15px;
+            border-radius: 10px;
             transition: var(--transicao-padrao);
             cursor: pointer;
             border: 2px solid transparent;
@@ -269,7 +251,7 @@
 
         .product-card.selected {
             border: 2px solid var(--cor-destaque-amarelo);
-            box-shadow: 0 0 15px rgba(251, 188, 5, 0.5);
+            box-shadow: 0 0 15px var(--cor-destaque-amarelo);
             transform: scale(1.03);
         }
 
@@ -284,11 +266,6 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            transition: var(--transicao-padrao);
-        }
-
-        .product-card:hover .product-circle {
-            transform: scale(1.05);
         }
 
         .product-circle img {
@@ -373,118 +350,85 @@
         }
 
         /* ===== NAVBAR INFERIOR ===== */
+        /* Container da navbar */
         .navbar {
             position: fixed;
             bottom: 0;
             left: 0;
-            width: 100%;
-            height: 75px;
-            background-color: var(--cor-fundo-topo);
+            width: 100vw;
+            height: 70px;
+            background: transparent;
             display: flex;
             justify-content: space-around;
-            align-items: flex-start;
-            padding-top: 12px;
-            z-index: 1000;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            z-index: 10;
         }
 
+        /* SVG de fundo da barra */
+        .navbar svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            display: block;
+            z-index: -1;
+        }
+
+        /* Ícones */
         .nav-item {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--cor-destaque-ciano);
-            font-size: 0.7em;
-            min-width: 20%;
-            width: 45px;
-            height: 45px;
             justify-content: center;
-            transition: var(--transicao-padrao);
-            border-radius: 10px;
-        }
-
-        .nav-item:hover {
-            transform: translateY(-3px);
+            align-items: center;
         }
 
         .nav-item img {
-            width: 26px;
-            height: 26px;
-            filter: invert(56%) sepia(91%) saturate(2465%) hue-rotate(167deg) brightness(101%) contrast(101%);
-            margin-bottom: 2px;
-            transition: var(--transicao-padrao);
+            width: 24px;
+            height: 24px;
+            transition: transform 0.2s ease;
         }
 
-        .nav-item:not(.nav-center-item) .nav-text {
-            display: none;
+        .nav-item:hover img {
+            transform: scale(1.15);
         }
 
-        .nav-item.active {
-            background-color: rgba(251, 188, 5, 0.1);
-            border-radius: 10px;
-            width: auto;
-            height: auto;
-            transform: none;
-            padding: 5px 8px;
-        }
-
-        .nav-item.active img {
-            filter: invert(79%) sepia(74%) saturate(840%) hue-rotate(352deg) brightness(104%) contrast(97%);
-        }
-
-        /* ===== BOTÃO CENTRAL ===== */
+        /* Botão central (flutuante com brilho) */
         .nav-center-item {
-            position: relative;
-            width: 80px;
-            height: 70px;
-        }
-
-        .nav-center-item::before {
-            content: '';
             position: absolute;
-            top: -30px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background-color: transparent;
-            box-shadow: 0 0 0 1000px var(--cor-fundo-topo), inset 0 0 0 1000px var(--cor-fundo-app), 0 0 0 1000px var(--cor-fundo-app);
-            clip-path: circle(40px at 50% 50%);
+            z-index: 5;
         }
 
         .nav-center-button {
-            background-color: transparent;
-            width: 75px;
-            height: 75px;
+            width: 76px;
+            height: 76px;
             border-radius: 50%;
+            border: none;
+            background: radial-gradient(circle at center, #2ed5d8 0%, #01182a 80%);
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -110%);
-            box-shadow: none;
-            z-index: 10;
-            border: none;
-            overflow: visible;
-            transition: var(--transicao-padrao);
+            box-shadow: 0 0 15px #2ed5d8, 0 0 30px rgba(46, 213, 216, 0.5);
             cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .nav-center-button:hover {
-            transform: translate(-50%, -110%) scale(1.05);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 20px #2ed5d8, 0 0 40px rgba(46, 213, 216, 0.6);
         }
 
+        /* Ícone dentro do botão */
         .nav-center-button img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 0;
-            filter: none;
-            animation: rotate 15s linear infinite;
-            transform: none;
+            width: 150px;
+            height: 150px;
+        }
+
+        /* Itens laterais reposicionados corretamente */
+        .nav-item:nth-of-type(2) {
+            margin-right: 150px; /* espaço antes do botão central */
         }
 
         @keyframes rotate {
@@ -565,16 +509,16 @@
         <header class="top-section">
             <div class="search-controls">
                 <div class="control-icon" title="Voltar" onclick="window.history.back()">
-                    <img src="img/home_barra_de_tarefa.png" alt="Voltar">
+                    <img src="img/menu_hamburguer.png" alt="opções">
                 </div>
 
                 <div class="search-bar">
-                    <img src="img/lupa_barra_de_tarefa.png" alt="Buscar">
+                    <img src="img/search_white.png" alt="Buscar">
                     <input type="text" id="search-input" placeholder="Procurar por um produto">
                 </div>
 
                 <div class="control-icon" title="Perfil" onclick="window.location.href='perfil.html'">
-                    <img src="img/user.png" alt="Perfil">
+                    <img src="img/user_white.png" alt="Perfil">
                 </div>
             </div>
         </header>
@@ -608,16 +552,21 @@
     </div>
 
     <nav class="navbar">
-        <a href="inicio.html" class="nav-item">
+        <svg width="390" height="50" viewBox="0 0 390 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M390 50H0V0H127.199C127.891 0.0148855 130.416 0.0253944 135.28 0.0253906C165.625 0.0256737 161.834 37.2663 194.59 37.2666C227.346 37.2666 223.556 0.0255408 253.9 0.0253906C258.765 0.0253878 261.29 0.0148846 261.981 0H390V50Z" fill="#0B2C3A"/>
+        </svg>
+
+
+        <a href="inicio.html" class="nav-item active">
             <img src="img/home_barra_de_tarefa.png" alt="Início">
         </a>
 
-        <a href="pesquisar_produto.html" class="nav-item active">
+        <a href="pesquisar_produto.html" class="nav-item">
             <img src="img/lupa_barra_de_tarefa.png" alt="Busca">
         </a>
 
         <div class="nav-item nav-center-item">
-            <button class="nav-center-button" id="ai-suggestions-btn">
+            <button class="nav-center-button" id="ai-button">
                 <img src="img/botao_calculo_barra_tarefa.png" alt="MercAI">
             </button>
         </div>
