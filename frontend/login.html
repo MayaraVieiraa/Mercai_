@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MercAI - Login/Cadastro</title>
+
+    <style>
+        /* [ ... CSS Styles mantidos para responsividade ... ] */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .top-section {
+            background-color: #0b1a2b;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #E0E0E0;
+            height: 35vh;
+            min-height: 200px;
+        }
+
+        .top-section img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .top-section h1 {
+            font-size: 2.2em;
+            color: #00bcd4;
+            margin-top: 5px;
+        }
+
+        .form-container {
+            flex-grow: 1;
+            background-color: #f0f2f5;
+            padding: 30px 20px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            margin-top: -20px;
+            position: relative;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #333;
+            background-color: #fff;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #00bcd4;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            background-color: #fbbc05;
+            color: #333;
+        }
+
+        .btn-primary:hover {
+            background-color: #e6a700;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .secondary-text {
+            font-size: 1em;
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        @media (max-width: 480px) {
+            .top-section {
+                padding: 30px 15px;
+                min-height: 180px;
+            }
+
+            .top-section img {
+                width: 80px;
+            }
+
+            .top-section h1 {
+                font-size: 2em;
+            }
+
+            .form-container {
+                padding: 25px 15px;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            .input-field,
+            .btn {
+                padding: 12px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-section">
+        <img src="img/Logo.png" alt="Logo MercAI - Carrinho e Localização Digital">
+        <h1>MercAI</h1>
+    </div>
+
+    <div class="form-container">
+        <h2>Faça login na sua conta</h2>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" class="input-field" placeholder="E-mail" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" class="input-field" placeholder="Senha" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="loginButton">
+                Entrar
+            </button>
+        </form>
+
+        <h2 class="secondary-text">Não possui cadastro?</h2>
+
+        <button type="button" class="btn btn-primary" id="registerButton"
+            onclick="window.location.href = 'cadastro.html';">
+            Cadastrar
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('loginForm');
+
+            // Credenciais Fixas
+            const VALID_EMAIL = 'mercai@gmail.com';
+            const VALID_PASSWORD = '123456';
+
+            // Função para carregar usuários do localStorage
+            const loadUsers = () => {
+                const usersJson = localStorage.getItem('mercai_users');
+                return usersJson ? JSON.parse(usersJson) : [];
+            };
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                let loggedIn = false;
+                let userName = '';
+
+                // 1. Tenta autenticar com o usuário FIXO
+                if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+                    loggedIn = true;
+                    userName = 'Usuário Padrão';
+                }
+
+                // 2. Tenta autenticar com usuários cadastrados no localStorage
+                if (!loggedIn) {
+                    const users = loadUsers();
+                    const foundUser = users.find(user => user.email === email && user.password === password);
+
+                    if (foundUser) {
+                        loggedIn = true;
+                        userName = foundUser.name;
+                    }
+                }
+
+                if (loggedIn) {
+                    // Salva o status de login
+                    localStorage.setItem('mercai_userName', userName);
+                    localStorage.setItem('mercai_userEmail', email);
+                    localStorage.setItem('mercai_isLoggedIn', 'true');
+
+                    alert(`Bem-vindo, ${userName}! Redirecionando para o Início.`);
+                    // CORREÇÃO APLICADA: REDIRECIONA PARA O INÍCIO
+                    window.location.href = 'inicio.html';
+                } else {
+                    alert('Login ou senha inválidos. Tente as credenciais padrão ou cadastre-se.');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
