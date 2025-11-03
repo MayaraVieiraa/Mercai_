@@ -9,11 +9,15 @@
     <style>
         /* Variáveis de Cores (Copiadas das telas anteriores) */
         :root {
-            --cor-fundo-app: #f0f2f5;
-            --cor-fundo-topo: #0b1a2b;
-            --cor-texto-claro: #E0E0E0;
-            --cor-destaque-ciano: #00bcd4;
-            --cor-destaque-amarelo: #fbbc05;
+            --cor-fundo-app: #F4F9FA;
+            --cor-fundo-topo: #01182A;
+            --cor-texto-claro: #F4F9FA;
+            --cor-destaque-ciano: #2ED5D8;
+            --cor-destaque-amarelo: #F2B705;
+            --cor-nav-bar: var(--cor-fundo-topo);
+            --cor-icone-fundo-final: #0B2C3A;
+            --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --transicao-padrao: all 0.3s ease;
         }
 
         /* Estilos Globais e Reset */
@@ -50,21 +54,21 @@
         }
 
         #loading-icon-container {
-            width: 100px;
-            height: 100px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: var(--cor-destaque-ciano);
+            width: 76px;
+            height: 76px;
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.7);
+            border: none;
+            background: radial-gradient(circle at center, #2ed5d8 0%, #01182a 80%);
+            box-shadow: 0 0 15px #2ed5d8, 0 0 30px rgba(46, 213, 216, 0.5);
         }
 
         #loading-icon-container img {
-            width: 80%;
-            height: 80%;
+            width: 150px;
+            height: 150px;
             object-fit: contain;
-            filter: invert(100%);
             animation: rotate 1.5s linear infinite;
         }
 
